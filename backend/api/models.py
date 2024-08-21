@@ -9,12 +9,13 @@ class Subtitle(models.Model):
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)  # Rating of the subtitle
     number_of_downloads = models.IntegerField(default=0)  # Number of downloads
     uploaded_at = models.DateTimeField(auto_now_add=True)  # Date and time when the subtitle was uploaded
+    thumbnail = models.FileField(upload_to='thumbnail/', default=False)
     file = models.FileField(upload_to='subtitles/')  # File path to the subtitle file
     description = models.TextField(blank=True)  # Optional description of the subtitle
-    is_active = models.BooleanField(default=True)  # Whether the subtitle is active or not
+    # is_active = models.BooleanField(default=True)  # Whether the subtitle is active or not
 
     def __str__(self):
-        return f"{self.title} - {self.language}"
+        return f"{self.title} - {self.language}"        
 
     class Meta:
         ordering = ['-uploaded_at']  
