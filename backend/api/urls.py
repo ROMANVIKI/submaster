@@ -1,5 +1,7 @@
 from django.urls import path
 from . import viewsets
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -9,3 +11,7 @@ urlpatterns = [
     path('update/<int:pk>', viewsets.UpdateSubtitle.as_view(), name='update'),
     path('create', viewsets.CreateSubtitle.as_view(), name='create'),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,6 +4,9 @@ import Nav from "./components/Nav";
 import LatestSub from "./components/LatestSub";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { createContext } from "react";
+
+export const SubContext = createContext(null)
 
 export default function Home() {
 
@@ -23,13 +26,17 @@ export default function Home() {
   }, []);  // Empty dependency array ensures this effect runs only once
 
   // If you want to log the data after it's fetched
-  useEffect(() => {
-    if (subData) {
-      console.log(subData);
-    }
-  }, [subData]);  // Dependency on subData ensures logging after the state is updated
+  // useEffect(() => {
+  //   if (subData) {
+  //     subData.map(obj => {
+  //       console.log(obj.id )
+  //     })
+  //   }
+  // }, [subData]);  // Dependency on subData ensures logging after the state is updated
 
   return (
+    <SubContext.Provider value={subData}>
+
     <main className="bg-[#0f0f23] font-mono text-['#009900'] h-full w-full p-2">
       <div className="border-b shadow-lg border-b-blue-200">
         <Nav />
@@ -38,5 +45,6 @@ export default function Home() {
         <LatestSub />
       </div>
     </main>
+    </SubContext.Provider>
   );
 }
