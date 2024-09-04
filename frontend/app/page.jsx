@@ -23,28 +23,21 @@ export default function Home() {
     };
 
     apiFunction();
-  }, []);  // Empty dependency array ensures this effect runs only once
+  }, []);  
 
-  // If you want to log the data after it's fetched
-  // useEffect(() => {
-  //   if (subData) {
-  //     subData.map(obj => {
-  //       console.log(obj.id )
-  //     })
-  //   }
-  // }, [subData]);  // Dependency on subData ensures logging after the state is updated
 
   return (
     <SubContext.Provider value={subData}>
 
-    <main className="bg-[#0f0f23] font-mono text-['#009900'] h-full w-full p-2">
+    <main className="bg-[#0f0f23] font-mono text-['#009900'] h-screen w-full p-2">
       <div className="border-b shadow-lg border-b-blue-200">
         <Nav />
       </div>
-      <div>
+      <div className="mt-12 p-12">
         <LatestSub />
       </div>
     </main>
     </SubContext.Provider>
   );
 }
+

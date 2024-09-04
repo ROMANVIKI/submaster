@@ -22,7 +22,7 @@ const Nav = () => {
             className="px-2 py-1 rounded-md border border-gray-600 bg-gray-800 text-sm text-green-600 focus:outline-none focus:border-green-500" // Changed border color
           />
         </div>
-        <div className="hidden md:block text-sm bg-green-600 text-white px-3 py-1 rounded-md cursor-pointer hover:bg-green-50">
+        <div className="hidden md:block text-sm bg-green-600 text-white px-3 py-1 rounded-md cursor-pointer hover:bg-green-500">
           Forum
         </div>
         <div className="hidden md:block bg-green-600 text-white px-3 py-1 rounded-md cursor-pointer hover:bg-green-500 text-sm">
