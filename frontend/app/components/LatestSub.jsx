@@ -2,17 +2,10 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import { SubContext } from "../page";
 import { FaDownload } from "react-icons/fa";
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const options = { day: "2-digit", month: "short", year: "numeric" };
-  return date.toLocaleDateString(undefined, options);
-};
+import formatDate from "./formatDate";
 
 const LatestSub = () => {
   const subData = useContext(SubContext) || [];
-
-  
 
   return (
     <div className="p-12"> {/* Add padding around the entire component */}
