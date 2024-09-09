@@ -1,20 +1,35 @@
-import React, {useContext} from "react";
-import { SubContext } from "../page";
+'use client'
+import React, { useEffect, useState } from "react";
 import { FaDownload } from "react-icons/fa";
 import formatDate from "./formatDate";
 import Image from "next/image";
+import axios from "axios";
+
 
 const MostRated = () => {
-  const subData = useContext(SubContext) || [];
+  const [mostRatedSub, setMostRatedSub] = useState(null)
+  useEffect(()=>{
+    const apiFunction = async () =>{
+      try{
+        const response = await axios.get('http://localhost:8000/api/most-rated/')
+        setMostRatedSub(response.data)
+      }
+      catch(error){
+        alert(error)
+      }
+    }
+
+    apiFunction()
+  }, [])
+
+
 
   return (
     <div className="p-12">
       {" "}
       {/* Add padding around the entire component */}
       <div className="border-b border-green-600 px-6 py-3">
-        <p className="text-lg font-bold text-green-300">
-          Most Rated Subtitles 
-        </p>
+        <p className="text-lg font-bold text-green-300">Most Rated Subtitles</p>
       </div>
       <div className="flex px-4 py-2 text-green-300 border-b border-green-600">
         <div className="w-2/6 text-xs font-semibold text-center">Title</div>
@@ -30,8 +45,8 @@ const MostRated = () => {
         <div className="w-1/12 text-xs font-semibold text-center">Uploaded</div>
       </div>
       <div className="space-y-2">
-        {subData.length > 0 ? (
-          subData.map((sub, index) => (
+        {mostRatedSub.length > 0 ? (
+          mostRatedSub.map((sub, index) => (
             <div
               key={index}
               className="flex items-center px-4 py-2 border-b border-green-600"

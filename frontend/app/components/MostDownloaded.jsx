@@ -1,12 +1,28 @@
-import React, {useContext} from "react";
+'use client'
+import React, {useContext, useEffect, useState} from "react";
 import { SubContext } from "../page";
 import { FaDownload } from "react-icons/fa";
 import formatDate from "./formatDate";
 import Image from "next/image";
+import axios from "axios";
 
 
 const MostDownloaded = () => {
-  const subData = useContext(SubContext) || [];
+  const [mostDownloaded, setMostDownloaded] = useState(null)
+
+
+  useEffect(()=>{
+    const apiFunction = async ()=> {
+      try{
+        const response = await axios.get('http://localhost:8000/api/most-downloaded/')
+        setMostDownloaded(response.data)
+      }catch(e){
+        alert(e)
+      }
+    }
+
+    apiFunction()
+  }, {})
 
   return (
     <div className="p-12">
@@ -31,8 +47,8 @@ const MostDownloaded = () => {
         <div className="w-1/12 text-xs font-semibold text-center">Uploaded</div>
       </div>
       <div className="space-y-2">
-        {subData.length > 0 ? (
-          subData.map((sub, index) => (
+        {mostDownloaded.length > 0 ? (
+          mostDownloaded.map((sub, index) => (
             <div
               key={index}
               className="flex items-center px-4 py-2 border-b border-green-600"
